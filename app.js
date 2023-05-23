@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const { validateMovie } = require("./validators.js");
 
 
 const app = express();
@@ -19,6 +20,7 @@ app.get("/api/movies/:id", movieHandlers.getMovieById);
 app.post("/api/movies", movieHandlers.postMovie);
 app.put("/api/movies/:id", movieHandlers.updateMovie);
 app.delete("/api/movies/:id", movieHandlers.deleteMovie);
+app.post("/api/movies", validateMovie, movieHandlers.postMovie);
 
 
 const usersHandlers = require("./usersHandlers")
