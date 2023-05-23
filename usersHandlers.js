@@ -1,23 +1,23 @@
 const database = require("./database");
 
 const getUsers = (req, res) => {
-  let sqlUser = "select * from users";
-  const sqlValuesUsers = [];
+  let sql = "select * from users";
+  const sqlValues = [];
 
   if (req.query.language != null) {
-    sqlUser += " where language = ?";
-    sqlValuesUsers.push(req.query.language);
+    sql += " where language = ?";
+    sqlValues.push(req.query.language);
+  
+    if (req.query.city != null) {
+      sql += " and city = ?";
+      sqlValues.push(req.query.city);
+    }
+  } else if (req.query.city != null) {
+    sql += " where city = ?";
+    sqlValues.push(req.query.city);
   }
-  if (req.query.city != null) {
-    sqlUser += " and cityt = ?";
-    sqlValuesUsers.push(req.query.city);
-  }
-else if (req.query.city != null) {
-  sqlUser += " where city = ?";
-  sqlValuesUsers.push(req.query.city);
-}
     database
-      .query("select * from users")
+      .query(sql, sqlValues)
       .then(([users]) => {
         res.status(200).json(users);
       })
