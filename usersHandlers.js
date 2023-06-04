@@ -88,8 +88,8 @@ const getUsers = (req, res) => {
   
     database
       .query("delete from movies where id = ?", [id])
-      .then(([result]) => {
-        if (result.affectedRows === 0) {
+      .then(([results]) => {
+        if (results.affectedRows === 0) {
           res.status(404).send("Not Found");
         } else {
           res.sendStatus(204);
