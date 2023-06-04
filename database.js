@@ -8,7 +8,7 @@ const database = mysql.createPool({
     database: process.env.DB_NAME,
   });
 
-  database
+ database
   .getConnection()
   .then(() => {
     console.log("Can reach database");
