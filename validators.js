@@ -34,7 +34,7 @@ const validateMovie = (req, res, next) => {
       next();
     }
   };
-
+  const validateUser = (req, res, next) => {
   const { firstname, lastname, email, city, language } = req.body;
   const errors = [];
   const emailRegex = /[a-z0-9._]+@[a-z0-9-]+\.[a-z]{2,3}/;
@@ -62,5 +62,5 @@ const validateMovie = (req, res, next) => {
   } else {
     next();
   }
-
+  }
  module.exports = {validateMovie, validateUser};
