@@ -31,8 +31,8 @@ app.get("/api/users/:id", usersHandlers.getUsersById);
 app.post("/api/users", usersHandlers.postUsers);
 app.put("/api/users/:id", usersHandlers.updateUsers);
 app.delete("/api/users/:id", usersHandlers.deleteUser);
-app.post("/api/users", validateUser, users.postUser);
-app.put("/api/users/:id", validateUser, users.updateUser);
+app.post("/api/users", validateUser, usersHandlers.postUsers);
+app.put("/api/users/:id", validateUser, usersHandlers.updateUsers);
 
 app.listen(port, (err) => {
   if (err) {
