@@ -69,7 +69,7 @@ const getUsers = (req, res) => {
     database
       .query(
         "update users set firstname=?, lastname=?, email=?, city=?, language=?, where id=?",
-        [firstname, lastname, email, city, language]
+        [firstname, lastname, email, city, language, id]
       )
       .then(([result]) => {
         if (result.affectedRows === 0) {
@@ -87,7 +87,7 @@ const getUsers = (req, res) => {
     const id = parseInt(req.params.id);
   
     database
-      .query("delete from movies where id = ?", [id])
+      .query("delete from users where id = ?", [id])
       .then(([results]) => {
         if (results.affectedRows === 0) {
           res.status(404).send("Not Found");
@@ -97,7 +97,7 @@ const getUsers = (req, res) => {
       })
       .catch((err) => {
         console.error(err);
-        res.status(500).send("Error deleting the movie");
+        res.status(500).send("Error deleting the users");
       });
   };
   module.exports = {
